@@ -7,6 +7,7 @@ helm repo add dify https://borispolonsky.github.io/dify-helm
 helm repo update
 helm install my-release dify/dify
 ```
+For detailed instructions on deploying with Flux and microk8s, see [docs/usage.md](docs/usage.md).
 
 ## Customized Installation
 Apply the `-f` option upon `helm install`/`helm upgrade` with your own `values.yaml`.
