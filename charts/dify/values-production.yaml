@@ -1,0 +1,52 @@
+# Example values for deploying Dify in production with external services
+
+postgresql:
+  enabled: false
+redis:
+  enabled: false
+
+externalPostgres:
+  enabled: true
+  address: postgres-cluster.default.svc.cluster.local
+  port: 5432
+  username: dify
+  password: change-me
+  database:
+    api: dify
+    pluginDaemon: dify_plugin
+
+externalRedis:
+  enabled: true
+  host: redis-master.default.svc.cluster.local
+  port: 6379
+  password: change-me
+
+externalS3:
+  enabled: true
+  endpoint: https://s3.example.com
+  accessKey: ACCESS_KEY
+  secretKey: SECRET_KEY
+  region: us-east-1
+  bucketName:
+    api: dify
+    pluginDaemon: dify-plugin
+
+externalQdrant:
+  enabled: true
+  endpoint: https://qdrant.example.com
+  apiKey: QDRANT_TOKEN
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+  hosts:
+    - host: dify.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: dify-tls
+      hosts:
+        - dify.example.com
